@@ -1,6 +1,29 @@
 
-### Database Specification - AirBnB
+<div align="center">
+  <br>
+  <h1><b>Database Specification - AirBnB</b></h1>
+</div>
+<br />
 
+---
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+    - [Entities and Attributes](#entities-and-attributes)
+    - [User](#user)
+    - [Property](#property)
+    - [Booking](#booking)
+    - [Payment](#payment)
+    - [Review](#review)
+    - [Message](#message)
+    - [Constraints](#constraints)
+    - [User Table](#user-table)
+    - [Property Table](#property-table)
+    - [Booking Table](#booking-table)
+    - [Payment Table](#payment-table)
+    - [Review Table](#review-table)
+    - [Message Table](#message-table)
+    - [Indexing](#indexing)
 <br />
 
 #### Entities and Attributes

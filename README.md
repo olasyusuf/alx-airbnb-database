@@ -1,42 +1,28 @@
-# alx-airbnb-database
-
+<div align="center">
+  <br>
+  <h1><b>alx-airbnb-database</b></h1>
+</div>
 <br />
 
-### Database Specification - AirBnB
-
-<br />
-
-#### Normalized Entity and Attributes
-
-It's expected that users will send messages to multiple recipients. Creating a separate table removes the transitive dependency from the recipient to the sender, thus ensuring better data integrity. 
-
 ---
+## Table of Contents
 
-#### Message
+- [Table of Contents](#table-of-contents)
+- [Introduction](#introduction)
+- [Database Structure](#database-structure)
 
-- **`message_id`**: Primary Key, UUID, Indexed
-- **`sender_id`**: Foreign Key, references User(user_id)
-- **`message_body`**: TEXT, NOT NULL
-- **`sent_at`**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
+## Introduction
 
+This project is a demonstration of how one might create a database model for a platform similar to Airbnb. It includes tables for managing users, properties, hosts, bookings, transactions, reviews, amenities, and their relationships. The database schema allows for basic functionalities such as user registration, property listing, booking management, transaction handling, and review submission.
 
-#### Message_Recipient
+## Database Structure
 
-- **`message_id`**: Foreign Key, references Message(message_id)
-- **`recipient_id`**: Foreign Key, references User(user_id)
-- **`received_at`**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
+The database structure consists of the following tables:
 
-
----
-#### Constraints
----
-
-#### Message Table
-
-- **`Foreign key`** constraints on `sender_id` 
-
-
-#### Message_Recipient
-
-- **`Foreign key`** constraints on each `message_id` and `recipient_id`.
-- **`Composite Primary key`** constraints on `message_id` and `recipient_id`.
+- `user`: Stores information about users registered on the platform.
+- `property`: Contains details of properties available for booking.
+- `booking`: Stores booking details made by users for properties.
+- `payment`: Stores payment records related to bookings.
+- `review`: Stores reviews submitted by users for properties.
+- `message`: Stores messages sent by users for other user.
+- `message_recipient`: Stores records of recipient(s) a user sent messages.
