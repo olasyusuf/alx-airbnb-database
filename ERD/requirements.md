@@ -6,7 +6,7 @@
 
 ---
 
-![Preview of app](https://drive.google.com/file/d/1uMJbqu6jWBWYkdaS4aw7DDqsrtYfKhmy/view?usp=sharing)
+![Preview of app](ERD/airbnb_clone_current.png)
 
 ---
 
