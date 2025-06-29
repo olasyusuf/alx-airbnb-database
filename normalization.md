@@ -6,7 +6,7 @@
 
 ---
 
-![Preview of app](airbnb_clone.png)
+![Preview of app](airbnb_clone_current.png)
 
 ---
 
