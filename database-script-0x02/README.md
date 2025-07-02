@@ -192,6 +192,7 @@
 - **`Additional Indexes`**:
     - **`email`** in the `User` table.
     - **`name`** in the `Amenity` table.
+    - **`location`** in the `Property` table.
     - **`amenity_id`** in the `Property_Feature` table.
     - **`property_id`** in the `Property`, `Property_Feature`, and `Booking` tables.
     - **`booking_id`** in the `Booking` and `Payment` tables.
