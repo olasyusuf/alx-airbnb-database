@@ -9,24 +9,34 @@
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-    - [Entities and Attributes](#entities-and-attributes)
+- [Introduction](#introduction)
+  - [Entities and Attributes](#entities-and-attributes)
     - [User](#user)
     - [Property](#property)
+    - [Amenity](#amenity)
+    - [Property\_Feature](#property_feature)
     - [Booking](#booking)
     - [Payment](#payment)
     - [Review](#review)
     - [Message](#message)
-    - [Constraints](#constraints)
+    - [Message\_Recipient](#message_recipient)
+  - [Constraints](#constraints)
     - [User Table](#user-table)
     - [Property Table](#property-table)
+    - [Amenity Table](#amenity-table)
+    - [Property\_Feature Table](#property_feature-table)
     - [Booking Table](#booking-table)
     - [Payment Table](#payment-table)
     - [Review Table](#review-table)
     - [Message Table](#message-table)
-    - [Indexing](#indexing)
+    - [Message\_Recipient Table](#message_recipient-table)
+  - [Indexing](#indexing)
+
+## Introduction
+
 <br />
 
-#### Entities and Attributes
+### Entities and Attributes
 ---
 
 #### User
@@ -53,10 +63,25 @@
 - **`updated_at`**: TIMESTAMP, ON UPDATE CURRENT_TIMESTAMP
 
 
+#### Amenity
+
+- **`amenity_id`**: Primary Key, UUID, Indexed
+- **`name`**: VARCHAR, UNIQUE, NOT NULL
+- **`created_at`**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
+  
+
+ #### Property_Feature
+
+- **`property_id`**: Foreign Key, references Property(property_id)
+- **`amenity_id`**: Foreign Key, references Amenity(amenity_id)
+- **`qty`**: INTEGER, NOT NULL
+- **`created_at`**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
+
+
 #### Booking
 
 - **`booking_id`**: Primary Key, UUID, Indexed
-- **`property_id`**: Foreign Key, - **`references Property(property_id)
+- **`property_id`**: Foreign Key, references Property(property_id)
 - **`user_id`**: Foreign Key, references User(user_id)
 - **`start_date`**: DATE, NOT NULL
 - **`end_date`**: DATE, NOT NULL
@@ -88,14 +113,20 @@
 
 - **`message_id`**: Primary Key, UUID, Indexed
 - **`sender_id`**: Foreign Key, references User(user_id)
-- **`recipient_id`**: Foreign Key, references User(user_id)
 - **`message_body`**: TEXT, NOT NULL
 - **`sent_at`**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
+
+
+#### Message_Recipient
+
+- **`message_id`**: Primary Key, UUID, Indexed
+- **`recipient_id`**: Foreign Key, references User(user_id)
+- **`received_at`**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
 
 <br />
 
 
-#### Constraints
+### Constraints
 ---
 
 #### User Table
@@ -108,6 +139,20 @@
 
 - **`Foreign key`** constraint on `host_id`.
 - **`Non-null`** constraints on essential attributes.
+
+
+#### Amenity Table
+
+- **`Unique`** constraint on `name`.
+- **`Non-null`** constraints on essential attributes.
+
+
+#### Property_Feature Table
+
+- **`Primary key`** constraint on `property_id` and `amenity_id`.
+- **`Foreign key`** constraint on `property_id` and `amenity_id`.
+- **`Non-null`** constraints on essential attributes.
+
 
 #### Booking Table
 
@@ -128,14 +173,26 @@
 
 #### Message Table
 
-- **`Foreign key`** constraints on `sender_id` and `recipient_id`.
+- **`Foreign key`** constraints on `sender_id`.
 
 
-#### Indexing
+#### Message_Recipient Table
+
+- **`Primary key`** constraint on `message_id` and `recipient_id`.
+- **`Foreign key`** constraint on `message_id` and `recipient_id`.
+- **`Non-null`** constraints on essential attributes.
+
+<br />
+
+---
+
+### Indexing
 
 - **`Primary Keys`**: Indexed automatically.
 - **`Additional Indexes`**:
     - **`email`** in the `User` table.
-    - **`property_id`** in the `Property` and `Booking` tables.
+    - **`name`** in the `Amenity` table.
+    - **`amenity_id`** in the `Property_Feature` table.
+    - **`property_id`** in the `Property`, `Property_Feature`, and `Booking` tables.
     - **`booking_id`** in the `Booking` and `Payment` tables.
 

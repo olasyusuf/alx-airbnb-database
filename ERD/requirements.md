@@ -8,6 +8,12 @@
 
 ![Preview of app](airbnb_clone.png)
 
+
+**`Fig. AirBnB Entity - Relationship Diagram`**
+
+<br />
+
 ---
+
 
 <br />

@@ -10,6 +10,78 @@ USE `airbnb_clone`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `user_id` char(36) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password_hash` varchar(1000) NOT NULL,
+  `phone_number` varchar(15) DEFAULT NULL,
+  `role` enum('Guest','Host','Admin') NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property`
+--
+
+DROP TABLE IF EXISTS `property`;
+CREATE TABLE IF NOT EXISTS `property` (
+  `property_id` char(36) NOT NULL,
+  `host_id` char(36) DEFAULT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` text NOT NULL,
+  `location` varchar(300) NOT NULL,
+  `price_per_night` decimal(10,0) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`property_id`),
+  KEY `host_id` (`host_id`)
+) ENGINE=InnoDB;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `amenity`
+--
+
+DROP TABLE IF EXISTS `amenity`;
+CREATE TABLE IF NOT EXISTS `amenity` (
+  `amenity_id` char(36) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`amenity_id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_feature`
+--
+
+DROP TABLE IF EXISTS `property_feature`;
+CREATE TABLE IF NOT EXISTS `property_feature` (
+  `property_id` char(36) NOT NULL,
+  `amenity_id` char(36) NOT NULL,
+  `qty` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`property_id`,`amenity_id`),
+  KEY `property_id` (`property_id`),
+  KEY `amenity_id` (`amenity_id`)
+) ENGINE=InnoDB;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `booking`
 --
 
@@ -28,6 +100,41 @@ CREATE TABLE IF NOT EXISTS `booking` (
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+DROP TABLE IF EXISTS `payment`;
+CREATE TABLE IF NOT EXISTS `payment` (
+  `payment_id` char(36) NOT NULL,
+  `booking_id` char(36) DEFAULT NULL,
+  `amount` decimal(10,0) NOT NULL,
+  `payment_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `payment_method` enum('Credit_Card','Paypal','Stripe') NOT NULL,
+  PRIMARY KEY (`payment_id`),
+  KEY `booking_id` (`booking_id`)
+) ENGINE=InnoDB;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `review`
+--
+
+DROP TABLE IF EXISTS `review`;
+CREATE TABLE IF NOT EXISTS `review` (
+  `review_id` char(36) NOT NULL,
+  `property_id` char(36) DEFAULT NULL,
+  `user_id` char(36) DEFAULT NULL,
+  `rating` int NOT NULL,
+  `comment` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`review_id`),
+  KEY `property_id` (`property_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB;
 
 -- --------------------------------------------------------
 
@@ -60,83 +167,6 @@ CREATE TABLE IF NOT EXISTS `message_recipient` (
   PRIMARY KEY (`message_id`,`recipient_id`),
   KEY `recipient_id` (`recipient_id`),
   KEY `message_id` (`message_id`)
-) ENGINE=InnoDB;
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `payment`
---
-
-DROP TABLE IF EXISTS `payment`;
-CREATE TABLE IF NOT EXISTS `payment` (
-  `payment_id` char(36) NOT NULL,
-  `booking_id` char(36) DEFAULT NULL,
-  `amount` decimal(10,0) NOT NULL,
-  `payment_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `payment_method` enum('Credit_Card','Paypal','Stripe') NOT NULL,
-  PRIMARY KEY (`payment_id`),
-  KEY `booking_id` (`booking_id`)
-) ENGINE=InnoDB;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `property`
---
-
-DROP TABLE IF EXISTS `property`;
-CREATE TABLE IF NOT EXISTS `property` (
-  `property_id` char(36) NOT NULL,
-  `host_id` char(36) DEFAULT NULL,
-  `name` varchar(100) NOT NULL,
-  `description` text NOT NULL,
-  `location` varchar(300) NOT NULL,
-  `price_per_night` decimal(10,0) NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`property_id`),
-  KEY `host_id` (`host_id`)
-) ENGINE=InnoDB;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `review`
---
-
-DROP TABLE IF EXISTS `review`;
-CREATE TABLE IF NOT EXISTS `review` (
-  `review_id` char(36) NOT NULL,
-  `property_id` char(36) DEFAULT NULL,
-  `user_id` char(36) DEFAULT NULL,
-  `rating` int NOT NULL,
-  `comment` text NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`review_id`),
-  KEY `property_id` (`property_id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` char(36) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `password_hash` varchar(1000) NOT NULL,
-  `phone_number` varchar(15) DEFAULT NULL,
-  `role` enum('Guest','Host','Admin') NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB;
 
 --
@@ -175,6 +205,13 @@ ALTER TABLE `payment`
 ALTER TABLE `property`
   ADD CONSTRAINT `property_ibfk_1` FOREIGN KEY (`host_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
+--
+-- Constraints for table `property_feature`
+--
+ALTER TABLE `property_feature`
+  ADD CONSTRAINT `property_feature_ibfk_1` FOREIGN KEY (`property_id`) REFERENCES `property` (`property_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `property_feature_ibfk_2` FOREIGN KEY (`amenity_id`) REFERENCES `amenity` (`amenity_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  
 --
 -- Constraints for table `review`
 --

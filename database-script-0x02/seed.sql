@@ -9,6 +9,61 @@ USE `airbnb_clone`;
 -- --------------------------------------------------------
 
 --
+-- Dumping data for table `user`
+--
+
+-- one of sql statements originally ran for admin user:
+-- INSERT INTO `user`(`user_id`, `first_name`, `last_name`, `email`, `password_hash`, `phone_number`, `role`) 
+-- VALUES (UUID(),'admin','admin','admin_airbnb_clone@gmail.com',SHA2('testgZvTtlPtjGRqeMBaLji3HxoKB5EZCsNL', 256), '2348123541234','Admin');
+
+INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `password_hash`, `phone_number`, `role`, `created_at`) VALUES
+('441de6b3-54cf-11f0-b651-0a0027000014', 'Abubakar', 'Yinuz', 'abu_yinuz@gmail.com', '54635d982c8726a84e754692fd73d3463cd7379d1b26aef22dd5621ed99729c6', NULL, 'Guest', '2025-06-29 09:56:02'),
+('501ccf96-54c4-11f0-b651-0a0027000014', 'admin', 'admin', 'admin_airbnb_clone@gmail.com', '98cb4d888ce679185db300dd0e8a04ab11a8bd6c5cad42815e702c963b403e3d', '2348123541234', 'Admin', '2025-06-29 08:37:38'),
+('69fa555d-54c5-11f0-b651-0a0027000014', 'Dan', 'Akpan', 'akpan_dan@gmail.com', 'e6b71590055b092a24b7276d1e614fa568cb95b7e06def90689faedc8992a142', '2347098128978', 'Guest', '2025-06-29 08:45:31'),
+('ffa4ef6e-54c4-11f0-b651-0a0027000014', 'Samuel', 'John', 'lifeisshort@gmail.com', 'c0ba3c9637e54a5d0c42d1dd192f542a16e91e6808b536cc0b118f42c9f8f2e2', '2348216723456', 'Host', '2025-06-29 08:42:32');
+
+-- --------------------------------------------------------
+
+--
+-- Dumping data for table `property`
+--
+
+-- one of sql statements originally ran to insert into property:
+-- INSERT INTO `property`(`property_id`, `host_id`, `name`, `description`, `location`, `price_per_night`) 
+-- VALUES (UUID(),'ffa4ef6e-54c4-11f0-b651-0a0027000014', 'Paradise is not Far', 'Tallest white building on the street','block 2A, Dimple Close, Ikoyi - Lagos',450.50);
+
+
+INSERT INTO `property` (`property_id`, `host_id`, `name`, `description`, `location`, `price_per_night`, `created_at`, `updated_at`) VALUES
+('07cdff87-54c7-11f0-b651-0a0027000014', 'ffa4ef6e-54c4-11f0-b651-0a0027000014', 'Paradise is not Far', 'Tallest white building on the street', 'block 2A, Dimple Close, Ikoyi - Lagos', '451', '2025-06-29 08:57:05', NULL),
+('0f6b53bc-54c8-11f0-b651-0a0027000014', 'ffa4ef6e-54c4-11f0-b651-0a0027000014', 'Auto Palace', 'Best Catfish in town', '82, Opebi Ikeja, Lagos.', '551', '2025-06-29 09:04:27', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Dumping data for table `amenity`
+--
+
+INSERT INTO `amenity` (`amenity_id`, `name`, `created_at`) VALUES
+('9ec6243e-56e5-11f0-b651-0a0027000014', 'Wi-Fi', '2025-06-29 01:41:05'),
+('b17e73a7-56e5-11f0-b651-0a0027000014', 'Pool', '2025-06-29 01:42:18'),
+('e4ff1925-56e5-11f0-b651-0a0027000014', 'Pet', '2025-06-29 01:42:25');
+
+-- --------------------------------------------------------
+
+--
+-- Dumping data for table `property_feature`
+--
+
+INSERT INTO `property_feature` (`property_id`, `amenity_id`, `qty`, `created_at`) VALUES
+('07cdff87-54c7-11f0-b651-0a0027000014', '9ec6243e-56e5-11f0-b651-0a0027000014', 1, '2025-06-29 00:45:05'),
+('07cdff87-54c7-11f0-b651-0a0027000014', 'b17e73a7-56e5-11f0-b651-0a0027000014', 1, '2025-06-29 00:46:35'),
+('07cdff87-54c7-11f0-b651-0a0027000014', 'e4ff1925-56e5-11f0-b651-0a0027000014', 2, '2025-06-29 00:48:01'),
+('0f6b53bc-54c8-11f0-b651-0a0027000014', '9ec6243e-56e5-11f0-b651-0a0027000014', 1, '2025-06-29 00:45:45'),
+('0f6b53bc-54c8-11f0-b651-0a0027000014', 'b17e73a7-56e5-11f0-b651-0a0027000014', 1, '2025-06-29 00:46:52');
+
+-- --------------------------------------------------------
+
+--
 -- Dumping data for table `booking`
 --
 
@@ -65,21 +120,6 @@ INSERT INTO `payment` (`payment_id`, `booking_id`, `amount`, `payment_date`, `pa
 -- --------------------------------------------------------
 
 --
--- Dumping data for table `property`
---
-
--- one of sql statements originally ran to insert into property:
--- INSERT INTO `property`(`property_id`, `host_id`, `name`, `description`, `location`, `price_per_night`) 
--- VALUES (UUID(),'ffa4ef6e-54c4-11f0-b651-0a0027000014', 'Paradise is not Far', 'Tallest white building on the street','block 2A, Dimple Close, Ikoyi - Lagos',450.50);
-
-
-INSERT INTO `property` (`property_id`, `host_id`, `name`, `description`, `location`, `price_per_night`, `created_at`, `updated_at`) VALUES
-('07cdff87-54c7-11f0-b651-0a0027000014', 'ffa4ef6e-54c4-11f0-b651-0a0027000014', 'Paradise is not Far', 'Tallest white building on the street', 'block 2A, Dimple Close, Ikoyi - Lagos', '451', '2025-06-29 08:57:05', NULL),
-('0f6b53bc-54c8-11f0-b651-0a0027000014', 'ffa4ef6e-54c4-11f0-b651-0a0027000014', 'Auto Palace', 'Best Catfish in town', '82, Opebi Ikeja, Lagos.', '551', '2025-06-29 09:04:27', NULL);
-
--- --------------------------------------------------------
-
---
 -- Dumping data for table `review`
 --
 
@@ -92,19 +132,5 @@ INSERT INTO `review` (`review_id`, `property_id`, `user_id`, `rating`, `comment`
 ('a23698a3-54cb-11f0-b651-0a0027000014', '0f6b53bc-54c8-11f0-b651-0a0027000014', '69fa555d-54c5-11f0-b651-0a0027000014', 5, 'Top-notch!', '2025-06-29 09:30:02');
 
 -- --------------------------------------------------------
-
---
--- Dumping data for table `user`
---
-
--- one of sql statements originally ran for admin user:
--- INSERT INTO `user`(`user_id`, `first_name`, `last_name`, `email`, `password_hash`, `phone_number`, `role`) 
--- VALUES (UUID(),'admin','admin','admin_airbnb_clone@gmail.com',SHA2('testgZvTtlPtjGRqeMBaLji3HxoKB5EZCsNL', 256), '2348123541234','Admin');
-
-INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `password_hash`, `phone_number`, `role`, `created_at`) VALUES
-('441de6b3-54cf-11f0-b651-0a0027000014', 'Abubakar', 'Yinuz', 'abu_yinuz@gmail.com', '54635d982c8726a84e754692fd73d3463cd7379d1b26aef22dd5621ed99729c6', NULL, 'Guest', '2025-06-29 09:56:02'),
-('501ccf96-54c4-11f0-b651-0a0027000014', 'admin', 'admin', 'admin_airbnb_clone@gmail.com', '98cb4d888ce679185db300dd0e8a04ab11a8bd6c5cad42815e702c963b403e3d', '2348123541234', 'Admin', '2025-06-29 08:37:38'),
-('69fa555d-54c5-11f0-b651-0a0027000014', 'Dan', 'Akpan', 'akpan_dan@gmail.com', 'e6b71590055b092a24b7276d1e614fa568cb95b7e06def90689faedc8992a142', '2347098128978', 'Guest', '2025-06-29 08:45:31'),
-('ffa4ef6e-54c4-11f0-b651-0a0027000014', 'Samuel', 'John', 'lifeisshort@gmail.com', 'c0ba3c9637e54a5d0c42d1dd192f542a16e91e6808b536cc0b118f42c9f8f2e2', '2348216723456', 'Host', '2025-06-29 08:42:32');
 
 COMMIT;

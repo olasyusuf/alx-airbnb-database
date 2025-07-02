@@ -6,11 +6,33 @@
 
 ---
 
-![Preview of app](airbnb_clone_current.png)
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+  - [Database Specification - AirBnB](#database-specification---airbnb)
+    - [Normalized Entity and Attributes](#normalized-entity-and-attributes)
+    - [Message](#message)
+    - [Message\_Recipient](#message_recipient)
+    - [Amenity](#amenity)
+    - [Property\_Feature](#property_feature)
+    - [Constraints](#constraints)
+    - [Message Table](#message-table)
+    - [Message\_Recipient](#message_recipient-1)
+    - [Property\_Feature](#property_feature-1)
+
+
+<br />
 
 ---
 
+
+![Preview of app](airbnb_clone_current.png)
+
+**`Fig. AirBnB Entity - Relationship Diagram`**
+
 <br />
+
+---
 
 ### Database Specification - AirBnB
 
@@ -18,9 +40,10 @@
 
 #### Normalized Entity and Attributes
 
-It's expected that users will send messages to multiple recipients. Creating a separate table removes the transitive dependency from the recipient to the sender, thus ensuring better data integrity. 
+It's expected that users will send messages to multiple recipients. Creating a separate table removes the transitive dependency from the recipient to the sender, thus ensuring better data integrity. Also, as indicated in the requirements, guests should be able to search properties based on features, thus, necessitating Amenity & Property_Feature tables respectively.
 
 ---
+<br />
 
 #### Message
 
@@ -37,7 +60,24 @@ It's expected that users will send messages to multiple recipients. Creating a s
 - **`received_at`**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
 
 
----
+#### Amenity
+
+- **`amenity_id`**: Primary Key, UUID, Indexed
+- **`name`**: VARCHAR, UNIQUE, NOT NULL
+- **`created_at`**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
+  
+
+ #### Property_Feature
+
+- **`property_id`**: Foreign Key, references Property(property_id)
+- **`amenity_id`**: Foreign Key, references Amenity(amenity_id)
+- **`qty`**: INTEGER, NOT NULL
+- **`created_at`**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
+
+
+
+<br />
+
 #### Constraints
 ---
 
@@ -50,3 +90,10 @@ It's expected that users will send messages to multiple recipients. Creating a s
 
 - **`Foreign key`** constraints on each `message_id` and `recipient_id`.
 - **`Composite Primary key`** constraints on `message_id` and `recipient_id`.
+
+  
+
+ #### Property_Feature
+
+- **`Foreign key`** constraints on each `property_id` and `amenity_id`.
+- **`Composite Primary key`** constraints on `property_id` and `amenity_id`.
