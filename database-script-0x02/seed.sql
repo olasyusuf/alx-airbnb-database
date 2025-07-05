@@ -12,113 +12,126 @@ USE `airbnb_clone`;
 -- Dumping data for table `user`
 --
 
--- one of sql statements originally ran for admin user:
--- INSERT INTO `user`(`user_id`, `first_name`, `last_name`, `email`, `password_hash`, `phone_number`, `role`) 
--- VALUES (UUID(),'admin','admin','admin_airbnb_clone@gmail.com',SHA2('testgZvTtlPtjGRqeMBaLji3HxoKB5EZCsNL', 256), '2348123541234','Admin');
 
-INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `password_hash`, `phone_number`, `role`, `created_at`) VALUES
-('441de6b3-54cf-11f0-b651-0a0027000014', 'Abubakar', 'Yinuz', 'abu_yinuz@gmail.com', '54635d982c8726a84e754692fd73d3463cd7379d1b26aef22dd5621ed99729c6', NULL, 'Guest', '2025-06-29 09:56:02'),
-('501ccf96-54c4-11f0-b651-0a0027000014', 'admin', 'admin', 'admin_airbnb_clone@gmail.com', '98cb4d888ce679185db300dd0e8a04ab11a8bd6c5cad42815e702c963b403e3d', '2348123541234', 'Admin', '2025-06-29 08:37:38'),
-('69fa555d-54c5-11f0-b651-0a0027000014', 'Dan', 'Akpan', 'akpan_dan@gmail.com', 'e6b71590055b092a24b7276d1e614fa568cb95b7e06def90689faedc8992a142', '2347098128978', 'Guest', '2025-06-29 08:45:31'),
-('ffa4ef6e-54c4-11f0-b651-0a0027000014', 'Samuel', 'John', 'lifeisshort@gmail.com', 'c0ba3c9637e54a5d0c42d1dd192f542a16e91e6808b536cc0b118f42c9f8f2e2', '2348216723456', 'Host', '2025-06-29 08:42:32');
+INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `password_hash`, `phone_number`, `role`) VALUES
+(UUID(), 'Abubakar', 'Yinuz', 'abu_yinuz@gmail.com', SHA2('t3lisc0pe', 256), NULL, 'GUEST', '2025-06-29 09:56:02'),
+(UUID(), 'admin', 'admin', 'admin_airbnb_clone@gmail.com', SHA2('testgZvTtlPtjGRqeMBaLji3HxoKB5EZCsNL', 256), '2348123541234', 'ADMIN'),
+(UUID(), 'Dan', 'Akpan', 'akpan_dan@gmail.com', SHA2('runn1ng_h0rse', 256), '2347098128978', 'GUEST'),
+(UUID(), 'Samuel', 'John', 'lifeisshort@gmail.com', SHA2('1mm@tu@l', 256), '2348216723456', 'HOST'),
+(UUID(), 'Ken', 'Williams', 'ken.willy@gmail.com', SHA2('Rumin@nt', 256), '2347914428912', 'GUEST');
 
+-- post-execution
+--
+-- abu_yinuz@gmail.com          ->   id: '441de6b3-54cf-11f0-b651-0a0027000014'   
+-- admin_airbnb_clone@gmail.com ->   id: '501ccf96-54c4-11f0-b651-0a0027000014'
+-- akpan_dan@gmail.com          ->   id: '69fa555d-54c5-11f0-b651-0a0027000014'
+-- lifeisshort@gmail.com        ->   id: 'ffa4ef6e-54c4-11f0-b651-0a0027000014'
 -- --------------------------------------------------------
 
 --
 -- Dumping data for table `property`
 --
 
--- one of sql statements originally ran to insert into property:
--- INSERT INTO `property`(`property_id`, `host_id`, `name`, `description`, `location`, `price_per_night`) 
--- VALUES (UUID(),'ffa4ef6e-54c4-11f0-b651-0a0027000014', 'Paradise is not Far', 'Tallest white building on the street','block 2A, Dimple Close, Ikoyi - Lagos',450.50);
+INSERT INTO `property` (`property_id`, `host_id`, `name`, `description`, `location`, `price_per_night`) VALUES
+(UUID(), 'ffa4ef6e-54c4-11f0-b651-0a0027000014', 'Paradise is not Far', 'Tallest white building on the street', 'block 2A, Dimple Close, Ikoyi - Lagos', '451'),
+(UUID(), 'ffa4ef6e-54c4-11f0-b651-0a0027000014', 'Auto Palace', 'Best Catfish in town', '82, Opebi Ikeja, Lagos.', '551');
 
-
-INSERT INTO `property` (`property_id`, `host_id`, `name`, `description`, `location`, `price_per_night`, `created_at`, `updated_at`) VALUES
-('07cdff87-54c7-11f0-b651-0a0027000014', 'ffa4ef6e-54c4-11f0-b651-0a0027000014', 'Paradise is not Far', 'Tallest white building on the street', 'block 2A, Dimple Close, Ikoyi - Lagos', '451', '2025-06-29 08:57:05', NULL),
-('0f6b53bc-54c8-11f0-b651-0a0027000014', 'ffa4ef6e-54c4-11f0-b651-0a0027000014', 'Auto Palace', 'Best Catfish in town', '82, Opebi Ikeja, Lagos.', '551', '2025-06-29 09:04:27', NULL);
-
+-- post-execution
+--
+-- property 'Paradise is not Far' ->   id:  '07cdff87-54c7-11f0-b651-0a0027000014'
+-- property 'Auto Palace'         ->   id:  '0f6b53bc-54c8-11f0-b651-0a0027000014'
 -- --------------------------------------------------------
 
 --
 -- Dumping data for table `property_feature`
 --
 
-INSERT INTO `property_feature` (`property_id`, `amenity`, `qty`, `created_at`) VALUES
-('07cdff87-54c7-11f0-b651-0a0027000014', 'WI-FI', 1, '2025-06-29 00:45:05'),
-('07cdff87-54c7-11f0-b651-0a0027000014', 'POOL', 1, '2025-06-29 00:46:35'),
-('07cdff87-54c7-11f0-b651-0a0027000014', 'PET', 2, '2025-06-29 00:48:01'),
-('0f6b53bc-54c8-11f0-b651-0a0027000014', 'WI-FI', 1, '2025-06-29 00:45:45'),
-('0f6b53bc-54c8-11f0-b651-0a0027000014', 'POOL', 1, '2025-06-29 00:46:52');
+INSERT INTO `property_feature` (`property_id`, `amenity`, `qty`) VALUES
+('07cdff87-54c7-11f0-b651-0a0027000014', 'WI-FI', 1),
+('07cdff87-54c7-11f0-b651-0a0027000014', 'POOL', 1),
+('07cdff87-54c7-11f0-b651-0a0027000014', 'PET', 2),
+('0f6b53bc-54c8-11f0-b651-0a0027000014', 'WI-FI', 1),
+('0f6b53bc-54c8-11f0-b651-0a0027000014', 'POOL', 1);
 
+-- post-execution
+--
 -- --------------------------------------------------------
 
 --
 -- Dumping data for table `booking`
 --
 
--- one of sql statements originally ran to insert into booking:
--- INSERT INTO `booking`(`booking_id`, `property_id`, `user_id`, `start_date`, `end_date`, `total_price`, `status`)  
--- VALUES (UUID(),'0f6b53bc-54c8-11f0-b651-0a0027000014','69fa555d-54c5-11f0-b651-0a0027000014', '2025-08-15','2025-08-20',3306.0,'Confirmed');
+INSERT INTO `booking` (`booking_id`, `property_id`, `user_id`, `start_date`, `end_date`, `total_price`, `status`) VALUES
+(UUID(), '07cdff87-54c7-11f0-b651-0a0027000014', '441de6b3-54cf-11f0-b651-0a0027000014', '2025-08-15', '2025-08-16', '901', 'CONFIRMED'),
+(UUID(), '0f6b53bc-54c8-11f0-b651-0a0027000014', '69fa555d-54c5-11f0-b651-0a0027000014', '2025-08-15', '2025-08-20', '3306', 'CONFIRMED'),
+(UUID(), '07cdff87-54c7-11f0-b651-0a0027000014', '8edc9fa4-5982-11f0-b651-0a0027000014', '2025-08-18', '2025-08-19', '901', 'PENDING'),
+(UUID(), '0f6b53bc-54c8-11f0-b651-0a0027000014', '69fa555d-54c5-11f0-b651-0a0027000014', '2025-08-22', '2025-08-27', '3306', 'CONFIRMED'),
+(UUID(), '0f6b53bc-54c8-11f0-b651-0a0027000014', '69fa555d-54c5-11f0-b651-0a0027000014', '2025-08-29', '2025-09-03', '3306', 'CONFIRMED')
+(UUID(), '07cdff87-54c7-11f0-b651-0a0027000014', '69fa555d-54c5-11f0-b651-0a0027000014', '2025-09-23', '2025-09-24', '901', 'PENDING'),;
 
-INSERT INTO `booking` (`booking_id`, `property_id`, `user_id`, `start_date`, `end_date`, `total_price`, `status`, `created_at`) VALUES
-('104314b5-54d1-11f0-b651-0a0027000014', '07cdff87-54c7-11f0-b651-0a0027000014', '441de6b3-54cf-11f0-b651-0a0027000014', '2025-08-15', '2025-08-16', '901', 'Confirmed', '2025-06-29 10:08:54'),
-('6a1c29aa-54c9-11f0-b651-0a0027000014', '0f6b53bc-54c8-11f0-b651-0a0027000014', '69fa555d-54c5-11f0-b651-0a0027000014', '2025-08-15', '2025-08-20', '3306', 'Confirmed', '2025-06-29 09:14:09');
-
+-- post-execution
+--
+-- booking-1            ->   id:  '104314b5-54d1-11f0-b651-0a0027000014'
+-- booking-2            ->   id:  '6a1c29aa-54c9-11f0-b651-0a0027000014'
+-- booking-3            ->   id:  '1d5bb7d5-5985-11f0-b651-0a0027000014'
+-- booking-4            ->   id:  '1d5bf97c-5985-11f0-b651-0a0027000014'
+-- booking-5            ->   id:  '1d5bfd24-5985-11f0-b651-0a0027000014'
+-- booking-6            ->   id:  'fb9a3907-5998-11f0-b651-0a0027000014'
 -- --------------------------------------------------------
 
 --
 -- Dumping data for table `message`
 --
 
--- sql statement originally ran to insert into message:
--- INSERT INTO `message`(`message_id`, `sender_id`, `message_body`) 
--- VALUES (UUID(),'ffa4ef6e-54c4-11f0-b651-0a0027000014','Payment received!');
+INSERT INTO `message` (`message_id`, `sender_id`, `message_body`) VALUES
+(UUID(), 'ffa4ef6e-54c4-11f0-b651-0a0027000014', 'Payment received!');
 
-INSERT INTO `message` (`message_id`, `sender_id`, `message_body`, `sent_at`) VALUES
-('2055809c-54cc-11f0-b651-0a0027000014', 'ffa4ef6e-54c4-11f0-b651-0a0027000014', 'Payment received!', '2025-06-29 09:33:34');
-
+-- post-execution
+--
+-- message-1            ->   id:  '2055809c-54cc-11f0-b651-0a0027000014'
 -- --------------------------------------------------------
 
 --
 -- Dumping data for table `message_recipient`
 --
 
--- one of sql statements originally ran to insert into message_recipient:
--- INSERT INTO `message_recipient`(`message_id`, `recipient_id`) 
--- VALUES ('2055809c-54cc-11f0-b651-0a0027000014','69fa555d-54c5-11f0-b651-0a0027000014');
+INSERT INTO `message_recipient` (`message_id`, `recipient_id`) VALUES
+('2055809c-54cc-11f0-b651-0a0027000014', '441de6b3-54cf-11f0-b651-0a0027000014'),
+('2055809c-54cc-11f0-b651-0a0027000014', '69fa555d-54c5-11f0-b651-0a0027000014');
 
-INSERT INTO `message_recipient` (`message_id`, `recipient_id`, `received_at`) VALUES
-('2055809c-54cc-11f0-b651-0a0027000014', '441de6b3-54cf-11f0-b651-0a0027000014', '2025-06-29 10:15:02'),
-('2055809c-54cc-11f0-b651-0a0027000014', '69fa555d-54c5-11f0-b651-0a0027000014', '2025-06-29 09:36:23');
-
+-- post-execution
+--
 -- --------------------------------------------------------
 
 --
 -- Dumping data for table `payment`
 --
 
--- one of sql statements originally ran to insert into payment:
--- INSERT INTO `payment`(`payment_id`, `booking_id`, `amount`, `payment_method`) 
--- VALUES (UUID(), '6a1c29aa-54c9-11f0-b651-0a0027000014', 2204.0,'Credit_Card');
+INSERT INTO `payment` (`payment_id`, `booking_id`, `amount`, `payment_method`) VALUES
+(UUID(), '6a1c29aa-54c9-11f0-b651-0a0027000014', '1102', 'PAYPAL'),
+(UUID(), '104314b5-54d1-11f0-b651-0a0027000014', '901', 'CREDIT_CARD'),
+(UUID(), '6a1c29aa-54c9-11f0-b651-0a0027000014', '2204', 'CREDIT_CARD'),
+(UUID(), '1d5bb7d5-5985-11f0-b651-0a0027000014', '901', 'CREDIT_CARD'),
+(UUID(), '1d5bf97c-5985-11f0-b651-0a0027000014', '3306', 'CREDIT_CARD'),
+(UUID(), '1d5bfd24-5985-11f0-b651-0a0027000014', '3306', 'CREDIT_CARD'),
+(UUID(), 'fb9a3907-5998-11f0-b651-0a0027000014', '901', 'CREDIT_CARD');
 
-INSERT INTO `payment` (`payment_id`, `booking_id`, `amount`, `payment_date`, `payment_method`) VALUES
-('090c9300-54cb-11f0-b651-0a0027000014', '6a1c29aa-54c9-11f0-b651-0a0027000014', '1102', '2025-06-29 09:25:45', 'Paypal'),
-('6c53c5e8-54d1-11f0-b651-0a0027000014', '104314b5-54d1-11f0-b651-0a0027000014', '901', '2025-06-29 10:11:29', 'Credit_Card'),
-('d2d39411-54ca-11f0-b651-0a0027000014', '6a1c29aa-54c9-11f0-b651-0a0027000014', '2204', '2025-06-29 09:24:14', 'Credit_Card');
-
+-- post-execution
+--
+-- payment-1            ->   id:  '090c9300-54cb-11f0-b651-0a0027000014'
+-- payment-2            ->   id:  '6c53c5e8-54d1-11f0-b651-0a0027000014'
+-- payment-3            ->   id:  'd2d39411-54ca-11f0-b651-0a0027000014'
+-- payment-4            ->   id:  '143ba420-598e-11f0-b651-0a0027000014'
+-- payment-5            ->   id:  '143c7fc0-598e-11f0-b651-0a0027000014'
+-- payment-6            ->   id:  '143c81e0-598e-11f0-b651-0a0027000014'
 -- --------------------------------------------------------
 
 --
 -- Dumping data for table `review`
 --
 
--- sql statement originally ran to insert into review:
--- INSERT INTO `review`(`review_id`, `property_id`, `user_id`, `rating`, `comment`) 
--- VALUES (UUID(),'0f6b53bc-54c8-11f0-b651-0a0027000014','69fa555d-54c5-11f0-b651-0a0027000014',5,'Top-notch!');
-
-
-INSERT INTO `review` (`review_id`, `property_id`, `user_id`, `rating`, `comment`, `created_at`) VALUES
-('a23698a3-54cb-11f0-b651-0a0027000014', '0f6b53bc-54c8-11f0-b651-0a0027000014', '69fa555d-54c5-11f0-b651-0a0027000014', 5, 'Top-notch!', '2025-06-29 09:30:02');
+INSERT INTO `review` (`review_id`, `property_id`, `user_id`, `rating`, `comment`) VALUES
+(UUID(), '0f6b53bc-54c8-11f0-b651-0a0027000014', '69fa555d-54c5-11f0-b651-0a0027000014', 5, 'Top-notch!');
 
 -- --------------------------------------------------------
 

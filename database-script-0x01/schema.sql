@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(30) NOT NULL,
   `password_hash` varchar(1000) NOT NULL,
   `phone_number` varchar(15) DEFAULT NULL,
-  `role` enum('Guest','Host','Admin') NOT NULL,
+  `role` ENUM('Guest','Host','Admin') NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`)
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `total_price` decimal(10,0) NOT NULL,
-  `status` enum('Pending','Confirmed','Canceled') NOT NULL,
+  `status` ENUM('PENDING','CONFIRMED','CANCELED') NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`booking_id`),
   KEY `property_id` (`property_id`),
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `booking_id` char(36) DEFAULT NULL,
   `amount` decimal(10,0) NOT NULL,
   `payment_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `payment_method` enum('Credit_Card','Paypal','Stripe') NOT NULL,
+  `payment_method` ENUM('CREDIT_CARD','PAYPAL','STRIPE') NOT NULL,
   PRIMARY KEY (`payment_id`),
   KEY `booking_id` (`booking_id`)
 ) ENGINE=InnoDB;
@@ -158,6 +158,7 @@ CREATE TABLE IF NOT EXISTS `message_recipient` (
 -- Constraints for dumped tables
 --
 
+---------------------------------------------------------------------------------
 --
 -- Constraints for table `booking`
 --

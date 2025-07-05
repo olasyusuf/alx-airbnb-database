@@ -11,6 +11,7 @@
 - [Table of Contents](#table-of-contents)
   - [Objectives](#objectives)
   - [Complex Queries with Joins](#complex-queries-with-joins)
+  - [Subqueries](#subqueries)
 
 
 <br />
@@ -46,3 +47,22 @@ This document details the implementation of advanced SQL querying and optimizati
   - **Note**: While MySQL does not natively support **`FULL OUTER JOIN`**,this functionality can be achieved by using **`UNION`** to combine separate **`LEFT JOIN`** and **`RIGHT JOIN`** queries.
 
 ![inner join](./complex_queries_with_joins/full_outer_join.png)
+
+<br />
+
+---
+
+### Subqueries
+
+- Query to find all properties where the average rating is greater than 4.0 using a subquery.
+
+![inner join](./subqueries/non_correlated.png)
+
+<br />
+
+- A correlated subquery to find users who have made more than 3 bookings.
+
+![inner join](./subqueries/correlated.png)
+
+
+<br />
