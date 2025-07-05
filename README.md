@@ -34,7 +34,6 @@ The database structure consists of the following tables:
 
 - `user`: Stores information about users registered on the platform.
 - `property`: Contains details of properties available for booking.
-- `amenity`: Contains amenities available.
 - `property_feature`: Contains details of amenities available for properties.
 - `booking`: Stores booking details made by users for properties.
 - `payment`: Stores payment records related to bookings.

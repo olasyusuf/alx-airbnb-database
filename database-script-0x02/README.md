@@ -13,7 +13,6 @@
   - [Entities and Attributes](#entities-and-attributes)
     - [User](#user)
     - [Property](#property)
-    - [Amenity](#amenity)
     - [Property\_Feature](#property_feature)
     - [Booking](#booking)
     - [Payment](#payment)
@@ -23,7 +22,6 @@
   - [Constraints](#constraints)
     - [User Table](#user-table)
     - [Property Table](#property-table)
-    - [Amenity Table](#amenity-table)
     - [Property\_Feature Table](#property_feature-table)
     - [Booking Table](#booking-table)
     - [Payment Table](#payment-table)
@@ -47,7 +45,7 @@
 - **`email`**: VARCHAR, UNIQUE, NOT NULL
 - **`password_hash`**: VARCHAR, NOT NULL
 - **`phone_number`**: VARCHAR, NULL
-- **`role`**: ENUM (guest, host, admin), NOT NULL
+- **`role`**: ENUM (GUEST, HOST, ADMIN), NOT NULL
 - **`created_at`**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
 
 
@@ -63,17 +61,10 @@
 - **`updated_at`**: TIMESTAMP, ON UPDATE CURRENT_TIMESTAMP
 
 
-#### Amenity
-
-- **`amenity_id`**: Primary Key, UUID, Indexed
-- **`name`**: VARCHAR, UNIQUE, NOT NULL
-- **`created_at`**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
-  
-
  #### Property_Feature
 
 - **`property_id`**: Foreign Key, references Property(property_id)
-- **`amenity_id`**: Foreign Key, references Amenity(amenity_id)
+- **`amenity`**: ENUM (WI-FI, POOL, PET), NOT NULL
 - **`qty`**: INTEGER, NOT NULL
 - **`created_at`**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
 
@@ -141,16 +132,10 @@
 - **`Non-null`** constraints on essential attributes.
 
 
-#### Amenity Table
-
-- **`Unique`** constraint on `name`.
-- **`Non-null`** constraints on essential attributes.
-
-
 #### Property_Feature Table
 
-- **`Primary key`** constraint on `property_id` and `amenity_id`.
-- **`Foreign key`** constraint on `property_id` and `amenity_id`.
+- **`Primary key`** constraint on `property_id` and `amenity`.
+- **`Foreign key`** constraint on `property_id`.
 - **`Non-null`** constraints on essential attributes.
 
 
@@ -193,7 +178,7 @@
     - **`email`** in the `User` table.
     - **`name`** in the `Amenity` table.
     - **`location`** in the `Property` table.
-    - **`amenity_id`** in the `Property_Feature` table.
+    - **`amenity`** in the `Property_Feature` table.
     - **`property_id`** in the `Property`, `Property_Feature`, and `Booking` tables.
     - **`booking_id`** in the `Booking` and `Payment` tables.
 

@@ -13,7 +13,6 @@
     - [Normalized Entity and Attributes](#normalized-entity-and-attributes)
     - [Message](#message)
     - [Message\_Recipient](#message_recipient)
-    - [Amenity](#amenity)
     - [Property\_Feature](#property_feature)
     - [Constraints](#constraints)
     - [Message Table](#message-table)
@@ -58,19 +57,12 @@ It's expected that users will send messages to multiple recipients. Creating a s
 - **`message_id`**: Foreign Key, references Message(message_id)
 - **`recipient_id`**: Foreign Key, references User(user_id)
 - **`received_at`**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
-
-
-#### Amenity
-
-- **`amenity_id`**: Primary Key, UUID, Indexed
-- **`name`**: VARCHAR, UNIQUE, NOT NULL
-- **`created_at`**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
   
 
  #### Property_Feature
 
 - **`property_id`**: Foreign Key, references Property(property_id)
-- **`amenity_id`**: Foreign Key, references Amenity(amenity_id)
+- **`amenity`**: ENUM (WI-FI, POOL, PET), NOT NULL
 - **`qty`**: INTEGER, NOT NULL
 - **`created_at`**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
 
@@ -95,5 +87,5 @@ It's expected that users will send messages to multiple recipients. Creating a s
 
  #### Property_Feature
 
-- **`Foreign key`** constraints on each `property_id` and `amenity_id`.
-- **`Composite Primary key`** constraints on `property_id` and `amenity_id`.
+- **`Foreign key`** constraints on each `property_id`.
+- **`Composite Primary key`** constraints on `property_id` and `amenity`.

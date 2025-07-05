@@ -50,34 +50,19 @@ CREATE TABLE IF NOT EXISTS `property` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `amenity`
---
-
-DROP TABLE IF EXISTS `amenity`;
-CREATE TABLE IF NOT EXISTS `amenity` (
-  `amenity_id` char(36) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`amenity_id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `property_feature`
 --
 
 DROP TABLE IF EXISTS `property_feature`;
 CREATE TABLE IF NOT EXISTS `property_feature` (
   `property_id` char(36) NOT NULL,
-  `amenity_id` char(36) NOT NULL,
+  `amenity` ENUM('WI-FI', 'POOL', 'PET') NOT NULL,
   `qty` int NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`property_id`,`amenity_id`),
+  PRIMARY KEY (`property_id`,`amenity`),
   KEY `property_id` (`property_id`),
-  KEY `amenity_id` (`amenity_id`)
-) ENGINE=InnoDB;
+  KEY `amenity` (`amenity`)
+) ENGINE=InnoDB
 
 -- --------------------------------------------------------
 
@@ -209,8 +194,7 @@ ALTER TABLE `property`
 -- Constraints for table `property_feature`
 --
 ALTER TABLE `property_feature`
-  ADD CONSTRAINT `property_feature_ibfk_1` FOREIGN KEY (`property_id`) REFERENCES `property` (`property_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `property_feature_ibfk_2` FOREIGN KEY (`amenity_id`) REFERENCES `amenity` (`amenity_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `property_feature_ibfk_1` FOREIGN KEY (`property_id`) REFERENCES `property` (`property_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
   
 --
 -- Constraints for table `review`
