@@ -1,0 +1,48 @@
+<div align="center">
+  <br>
+  <h1><b>alx-airbnb-database</b></h1>
+  <h2><i>advanced-script</i></h2>
+</div>
+<br />
+
+---
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+  - [Objectives](#objectives)
+  - [Complex Queries with Joins](#complex-queries-with-joins)
+
+
+<br />
+
+---
+
+### Objectives
+
+This document details the implementation of advanced SQL querying and optimization techniques for a simulated Airbnb database, ensuring you are equipped to handle large-scale applications where efficiency and scalability are critical.
+
+
+<br />
+
+---
+
+### Complex Queries with Joins
+
+- Query using an **`INNER JOIN`** to retrieve all bookings and the respective users who made those bookings.
+
+![inner join](./complex_queries_with_joins/inner_join.png)
+
+<br />
+
+- Query using a **`LEFT JOIN`** to retrieve all properties and their reviews, including properties that have no reviews.
+
+![inner join](./complex_queries_with_joins/left_join.png)
+
+
+<br />
+
+- Query using a **`FULL OUTER JOIN`** to retrieve all users and all bookings, even if the user has no booking or a booking is not linked to a user.
+  
+  - **Note**: While MySQL does not natively support **`FULL OUTER JOIN`**,this functionality can be achieved by using **`UNION`** to combine separate **`LEFT JOIN`** and **`RIGHT JOIN`** queries.
+
+![inner join](./complex_queries_with_joins/full_outer_join.png)
