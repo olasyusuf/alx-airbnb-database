@@ -65,26 +65,3 @@ FROM
     user AS u
 RIGHT JOIN
     booking AS b ON u.user_id = b.user_id;
-
-
-
-
-
-
-
-
-
-
-
-
-SELECT u.user_id, u.first_name, u.last_name, u.email, b.booking_id, b.start_date, b.end_date, b.total_price, b.status
-FROM
-    user AS u
-LEFT JOIN
-    booking AS b ON u.user_id = b.user_id
-UNION
-SELECT u.user_id, u.first_name, u.last_name, u.email, b.booking_id, b.start_date, b.end_date, b.total_price, b.status
-FROM
-    user AS u
-RIGHT JOIN
-    booking AS b ON u.user_id = b.user_id;
