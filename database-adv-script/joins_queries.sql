@@ -14,8 +14,8 @@ FROM
     booking AS b
 INNER JOIN
     user AS u ON b.user_id = u.user_id
-    ORDER BY
-    u.email DESC;;
+ORDER BY
+    u.email DESC;
 
 
 -- Write a query using a LEFT JOIN to retrieve all properties 
