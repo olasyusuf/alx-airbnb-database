@@ -13,7 +13,9 @@ SELECT
 FROM
     booking AS b
 INNER JOIN
-    user AS u ON b.user_id = u.user_id;
+    user AS u ON b.user_id = u.user_id
+    ORDER BY
+    u.email DESC;;
 
 
 -- Write a query using a LEFT JOIN to retrieve all properties 
@@ -33,7 +35,7 @@ FROM
 LEFT JOIN
     review AS r ON p.property_id = r.property_id
 ORDER BY
-    b.created_at DESC;
+    r.created_at DESC;
 
 
 -- Write a query using a FULL OUTER JOIN to retrieve all users and all bookings, 
