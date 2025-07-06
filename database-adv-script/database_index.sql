@@ -13,6 +13,9 @@ CREATE INDEX idx_user_role ON user (role);
 -- Index on 'email' for efficient filtering of users by their email
 CREATE INDEX idx_user_email ON user (email);
 
+-- Index on 'password_hash' for efficient filtering of users by their email
+CREATE INDEX idx_password_hash ON user (password_hash);
+
 
 --
 --
@@ -23,6 +26,9 @@ CREATE INDEX idx_booking_property_id ON booking (property_id);
 
 -- Index on 'user_id' to optimize joins with the 'user' table
 CREATE INDEX idx_booking_user_id ON booking (user_id);
+
+-- Index on 'start_date' and 'end_date' for efficient date range queries (e.g., availability checks)
+CREATE INDEX idx_booking_start_date ON booking (start_date);
 
 -- Index on 'start_date' and 'end_date' for efficient date range queries (e.g., availability checks)
 CREATE INDEX idx_booking_dates ON booking (start_date, end_date);
@@ -52,6 +58,7 @@ CREATE INDEX idx_property_name ON property (name);
 
 -- Index on 'amenity' for faster lookups or filtering by property feature
 CREATE INDEX idx_property_amenity ON property_feature (amenity);
+CREATE INDEX idx_property_id ON property_feature (property_id);
 
 
 
