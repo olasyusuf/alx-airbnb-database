@@ -1,7 +1,7 @@
 <div align="center">
   <br>
   <h1><b>alx-airbnb-database</b></h1>
-  <h2><i>advanced-script</i></h2>
+  <h2><i>Partiton Performance</i></h2>
 </div>
 <br />
 
@@ -76,6 +76,11 @@ WHERE start_date >= '2025-10-01' AND start_date < '2026-03-01';
 
 <br />
 
+<div align="right">
+
+  [ [↑ to top ↑](#table-of-contents) ]
+</div>
+
 ---
 ### After Partitioning
 
@@ -129,6 +134,11 @@ WHERE start_date >= '2025-10-01' AND start_date < '2026-03-01';
 
 <br />
 
+<div align="right">
+
+  [ [↑ to top ↑](#table-of-contents) ]
+</div>
+
 ---
 
 **Performance Observation**
@@ -145,3 +155,9 @@ When executing the provided queries on a Booking table that has been partitioned
 **Test Query 3 (Spanning Multiple Years):** For queries that span across partition boundaries (e.g., `late 2025` to `early 2026`), the database would intelligently identify and scan only the relevant partitions (e.g., `p2025` and `p2026`). While it scans more than one partition, it still avoids scanning all other irrelevant partitions, resulting in a performance gain over a non-partitioned table.
 
 In summary, partitioning the Booking table by start_date allows the database to efficiently narrow down the search space for date-range queries, leading to faster response times and reduced I/O operations.
+
+<div align="right">
+
+  [ [↑ to top ↑](#table-of-contents) ]
+</div>
+

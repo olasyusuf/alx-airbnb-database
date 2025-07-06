@@ -1,7 +1,7 @@
 <div align="center">
   <br>
   <h1><b>alx-airbnb-database</b></h1>
-  <h2><i>advanced-script</i></h2>
+  <h2><i> Implement Indexes for Optimization</i></h2>
 </div>
 <br />
 
@@ -13,8 +13,8 @@
   - [Implement Indexes for Optimization](#implement-indexes-for-optimization)
       - [High Usage Columns:](#high-usage-columns)
   - [Creating appropriate indexes for the tables](#creating-appropriate-indexes-for-the-tables)
-      - [Query Tested - Before Indexes:](#query-tested---before-indexes)
-      - [After Indexes:](#after-indexes)
+    - [Query Tested - Before Indexes:](#query-tested---before-indexes)
+    - [After Indexes:](#after-indexes)
 
 
 <br />
@@ -49,6 +49,11 @@ This aims to assess and compare query performance, pre- and post-indexing, with 
 
 <br />
 
+<div align="right">
+
+  [ [↑ to top ↑](#table-of-contents) ]
+</div>
+
 ---
 
 ###  Creating appropriate indexes for the tables
@@ -66,7 +71,7 @@ This aims to assess and compare query performance, pre- and post-indexing, with 
 
 <br />
 
-##### Query Tested - Before Indexes: 
+#### Query Tested - Before Indexes: 
 
 - `query 1`
 
@@ -99,6 +104,13 @@ CREATE INDEX idx_user_email ON user (email);
 CREATE INDEX idx_password_hash ON user (password_hash);
 ```
 <br />
+
+<div align="right">
+
+  [ [↑ to top ↑](#table-of-contents) ]
+</div>
+
+
 
 - `query 2`
 
@@ -143,6 +155,11 @@ CREATE INDEX idx_property_id ON property_feature (property_id);
 
 <br />
 
+<div align="right">
+
+  [ [↑ to top ↑](#table-of-contents) ]
+</div>
+
 - `query 3`
 
 ```sql
@@ -185,6 +202,10 @@ CREATE INDEX idx_user_property_status (user_id, property_id, status)
 
 <br />
 
+<div align="right">
+
+  [ [↑ to top ↑](#table-of-contents) ]
+</div>
 
 **Performance Observation**
 - **Execution Plan:** MySQL performed a full table scan (type: ALL) to retrieve matching rows.
@@ -193,10 +214,15 @@ CREATE INDEX idx_user_property_status (user_id, property_id, status)
 
 <br />
 
+<div align="right">
+
+  [ [↑ to top ↑](#table-of-contents) ]
+</div>
+
 ---
 
 
-##### After Indexes: 
+#### After Indexes: 
 **Observations**
 
 After recreating the indexes and rerunning the tests, a noticeable improvement in query performance was observed. Queries that previously relied on full table scans were now efficiently resolved using index lookups. 
@@ -218,5 +244,11 @@ The query benefited from the full-text index `location` (if it were a standard i
 The query benefited from `idx_booking_property_id`, `idx_booking_user_id`, `idx_booking_start_date`, and `idx_booking_status` indexes
 
 <br />
+
+<div align="right">
+
+  [ [↑ to top ↑](#table-of-contents) ]
+</div>
+
 
 

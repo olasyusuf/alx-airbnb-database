@@ -34,6 +34,12 @@ This document details the refactoring of complex queries for performance improve
 
 <br />
 
+<div align="right">
+
+  [ [↑ to top ↑](#table-of-contents) ]
+</div>
+
+
 - Analyze the query’s performance using EXPLAIN to identify any inefficiencies.
 
 `using EXPLAIN`
@@ -43,6 +49,11 @@ This document details the refactoring of complex queries for performance improve
 `using EXPLAIN ANALYZE`
 ![inner join](./query_omtimization/explain_analyze.png)
 <br />
+
+<div align="right">
+
+  [ [↑ to top ↑](#table-of-contents) ]
+</div>
 
 - After refactoring the query to reduce execution time, such as by reducing unnecessary joins or using.
   
@@ -54,4 +65,8 @@ This document details the refactoring of complex queries for performance improve
 `using EXPLAIN ANALYZE`
 ![inner join](./query_omtimization/optimized_explain_analyze.png)
 <br />
-<br />
+<div align="right">
+
+  [ [↑ to top ↑](#table-of-contents) ]
+</div>
+

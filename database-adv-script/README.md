@@ -51,6 +51,11 @@ This document details the implementation of advanced SQL querying and optimizati
 
 <br />
 
+<div align="right">
+
+  [ [↑ to top ↑](#table-of-contents) ]
+</div>
+
 ---
 
 ### Subqueries
@@ -68,6 +73,11 @@ This document details the implementation of advanced SQL querying and optimizati
 
 <br />
 
+<div align="right">
+
+  [ [↑ to top ↑](#table-of-contents) ]
+</div>
+
 ---
 
 ### Aggregations and Window Functions
@@ -82,6 +92,10 @@ This document details the implementation of advanced SQL querying and optimizati
 
 ![window function](./aggregations_n_window_functions/window_rank.png)
 
-
 <br />
+
+<div align="right">
+
+  [ [↑ to top ↑](#table-of-contents) ]
+</div>
 
