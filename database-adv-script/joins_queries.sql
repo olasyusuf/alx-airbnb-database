@@ -31,7 +31,9 @@ SELECT
 FROM
     property AS p
 LEFT JOIN
-    review AS r ON p.property_id = r.property_id;
+    review AS r ON p.property_id = r.property_id
+ORDER BY
+    b.created_at DESC;
 
 
 -- Write a query using a FULL OUTER JOIN to retrieve all users and all bookings, 
