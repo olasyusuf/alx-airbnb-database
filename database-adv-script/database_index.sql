@@ -30,6 +30,9 @@ CREATE INDEX idx_booking_dates ON booking (start_date, end_date);
 -- Index on 'status' for filtering bookings by their status
 CREATE INDEX idx_booking_status ON booking (status);
 
+-- Index on 'user, property, status' for filtering bookings by their status
+CREATE INDEX idx_user_property_status (user_id, property_id, status)
+
 --
 --
 -- Indexes for the 'property' table

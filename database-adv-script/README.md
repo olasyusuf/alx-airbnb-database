@@ -13,9 +13,6 @@
   - [Complex Queries with Joins](#complex-queries-with-joins)
   - [Subqueries](#subqueries)
   - [Aggregations and Window Functions](#aggregations-and-window-functions)
-  - [Implement Indexes for Optimization](#implement-indexes-for-optimization)
-    - [Indexing](#indexing)
-  - [Aggregations and Window Functions](#aggregations-and-window-functions-1)
 
 
 <br />
@@ -41,7 +38,7 @@ This document details the implementation of advanced SQL querying and optimizati
 
 - Query using a **`LEFT JOIN`** to retrieve all properties and their reviews, including properties that have no reviews.
 
-![inner join](./complex_queries_with_joins/left_join.png)
+![left join](./complex_queries_with_joins/left_join.png)
 
 
 <br />
@@ -50,7 +47,7 @@ This document details the implementation of advanced SQL querying and optimizati
   
   - **Note**: While MySQL does not natively support **`FULL OUTER JOIN`**,this functionality can be achieved by using **`UNION`** to combine separate **`LEFT JOIN`** and **`RIGHT JOIN`** queries.
 
-![inner join](./complex_queries_with_joins/full_outer_join.png)
+![full join](./complex_queries_with_joins/full_outer_join.png)
 
 <br />
 
@@ -60,13 +57,13 @@ This document details the implementation of advanced SQL querying and optimizati
 
 - Query to find all properties where the average rating is greater than 4.0 using a subquery.
 
-![inner join](./subqueries/non_correlated.png)
+![non_correlated](./subqueries/non_correlated.png)
 
 <br />
 
 - A correlated subquery to find users who have made more than 3 bookings.
 
-![inner join](./subqueries/correlated.png)
+![correlated](./subqueries/correlated.png)
 
 
 <br />
@@ -77,54 +74,14 @@ This document details the implementation of advanced SQL querying and optimizati
 
 - Query to find the total number of bookings made by each user, using the COUNT function and GROUP BY clause.
 
-![inner join](./aggregations_n_window_functions/aggregate.png)
+![aggregate function](./aggregations_n_window_functions/aggregate.png)
 
 <br />
 
 - A query using window function (ROW_NUMBER, RANK) to rank properties based on the total number of bookings they have received.
 
-![inner join](./aggregations_n_window_functions/window_rank.png)
+![window function](./aggregations_n_window_functions/window_rank.png)
 
 
 <br />
-
-
----
-
-### Implement Indexes for Optimization
-
-#### Indexing
-
-- **`Primary Keys`**: Indexed automatically.
-- **`Additional Indexes`**:
-    - **`email`** in the `User` table.
-    - `FullText index` on **`location`** in the `Property` table.
-    - **`amenity`** in the `Property_Feature` table.
-    - **`property_id`** in the `Property_Feature`, and `Booking` tables.
-    - **`booking_id`** in the `Booking` and `Payment` tables.
-
-
-<br />
-
-
-
-
-
----
-
-### Aggregations and Window Functions
-
-- Query to find the total number of bookings made by each user, using the COUNT function and GROUP BY clause.
-
-![inner join](./aggregations_n_window_functions/aggregate.png)
-
-<br />
-
-- A query using window function (ROW_NUMBER, RANK) to rank properties based on the total number of bookings they have received.
-
-![inner join](./aggregations_n_window_functions/window_rank.png)
-
-
-<br />
-
 
