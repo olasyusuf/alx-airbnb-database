@@ -110,7 +110,7 @@
 
 #### Message_Recipient
 
-- **`message_id`**: Primary Key, UUID, Indexed
+- **`message_id`**: Foreign Key, references Message(message_id)
 - **`recipient_id`**: Foreign Key, references User(user_id)
 - **`received_at`**: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
 
